@@ -1,0 +1,23 @@
+[package]
+name = "poteudp"
+version = "0.1.0"
+authors = ["Cobrand <cobrandw@gmail.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+
+postgres = "0.17"
+rand= "0.7"
+
+bincode = "^1" # transforms structures into cross-platform bytes
+serde = { version = "^1", features = ["derive"] } # Serialize & Deserialize
+
+[[bin]]
+name = "client"
+path = "src/client_main.rs"
+
+[[bin]]
+name = "server"
+path = "src/server_main.rs"
