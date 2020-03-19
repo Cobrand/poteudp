@@ -2,7 +2,7 @@ mod common;
 
 use common::Payload;
 use rand::prelude::*;
-use std::io::{Read, Write};
+use std::io::{Write};
 
 use std::net::UdpSocket;
 fn main() -> Result<(), Box<dyn std::error::Error>> {

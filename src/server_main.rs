@@ -19,10 +19,16 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let buf = &mut buf[..amt];
 
         if let Ok(payload) = bincode_config.deserialize::<Payload>(buf) {
-            println!("{:?} {:?}", payload, src);
+            let now = std::time::SystemTime::now();
 
-            // client.execute(
-            //     "INSERT"
+            let r = client.execute(
+                "INSERT INTO pote.poteudp (sender_id, timestamp, message_id, series_id, ip_address)
+                VALUES ($1, $2, $3, $4, $5)",
+                &[&payload.sender_id, &now, &payload.message_id, &payload.series_id, &src.ip()]
+            );
+            if let Err(e) = r {
+                eprintln!("error while sending payload to database: {}", e);
+            }
         }
     }
 }
