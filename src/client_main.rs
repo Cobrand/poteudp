@@ -37,7 +37,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
             message_id,
         };
         let payload = bincode_config.serialize(&payload)?;
-        socket.send_to(&payload, "127.0.0.1:61240")?;
+        socket.send_to(&payload, "chocolytech.info:61250")?;
 
         std::thread::sleep(std::time::Duration::from_millis(500));
         message_id += 1;
